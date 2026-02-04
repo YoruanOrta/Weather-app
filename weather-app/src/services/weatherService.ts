@@ -7,7 +7,8 @@ const WEATHER_API_URL = 'https://api.weatherapi.com/v1';
 const OPENWEATHER_API_URL = 'https://api.openweathermap.org/data/2.5';
 
 // Mapear descripciones de WeatherAPI a codigos de OpenWeather
-const mapWeatherDescriptionToCode = (description: string, _icon: string): number => {  const desc = description.toLowerCase();
+const mapWeatherDescriptionToCode = (description: string): number => {
+  const desc = description.toLowerCase();
   
   // Tormenta
   if (desc.includes('thunder') || desc.includes('tormenta')) return 200;
@@ -58,7 +59,7 @@ const convertWeatherAPIToStandard = (data: any): any => {
     clouds: data.current.cloud,
     description: data.current.condition.text,
     icon: data.current.condition.icon,
-    weather_id: mapWeatherDescriptionToCode(data.current.condition.text, data.current.condition.icon),
+    weather_id: mapWeatherDescriptionToCode(data.current.condition.text),
     dt: data.location.localtime_epoch,
     sunrise: data.forecast?.forecastday[0]?.astro?.sunrise,
     sunset: data.forecast?.forecastday[0]?.astro?.sunset,
