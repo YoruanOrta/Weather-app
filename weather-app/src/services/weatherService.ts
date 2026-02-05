@@ -45,7 +45,6 @@ const mapWeatherDescriptionToCode = (description: string): number => {
 // Funcion para convertir respuesta de WeatherAPI a formato compatible
 const convertWeatherAPIToStandard = (data: any): any => {
   // Estimar timezone basado en longitud (cada 15 grados = 1 hora)
-  // Esto es una aproximación cuando no tenemos el timezone real
   const estimatedTimezone = Math.round(data.location.lon / 15) * 3600;
   
   return {
